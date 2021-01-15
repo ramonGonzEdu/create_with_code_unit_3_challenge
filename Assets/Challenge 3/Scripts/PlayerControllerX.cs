@@ -16,6 +16,7 @@ public class PlayerControllerX : MonoBehaviour
 	private AudioSource playerAudio;
 	public AudioClip moneySound;
 	public AudioClip explodeSound;
+	public AudioClip bounceSound;
 
 	private GameObject bg;
 
@@ -67,6 +68,13 @@ public class PlayerControllerX : MonoBehaviour
 			playerAudio.PlayOneShot(moneySound, 1.0f);
 			Destroy(other.gameObject);
 
+		}
+
+		// if player collides with money, fireworks
+		else if (other.gameObject.CompareTag("Ground"))
+		{
+			playerAudio.PlayOneShot(bounceSound, 1.0f);
+			playerRb.AddForce(Vector3.up * 10.0f, ForceMode.Impulse);
 		}
 
 	}
